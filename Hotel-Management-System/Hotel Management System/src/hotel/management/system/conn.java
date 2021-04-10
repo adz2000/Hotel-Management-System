@@ -26,5 +26,9 @@ public class conn{
             System.out.println(e);
         }  
     }  
+
+    Statement createStatement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }  
 

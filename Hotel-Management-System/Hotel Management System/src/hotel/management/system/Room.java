@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotel.management.system;
 
 import java.awt.BorderLayout;
@@ -19,6 +14,7 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 public class Room extends JFrame {
 	Connection conn = null;
 	private JPanel contentPane;
@@ -39,7 +35,8 @@ public class Room extends JFrame {
 				try {
 					Room frame = new Room();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+                                catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -64,6 +61,7 @@ public class Room extends JFrame {
                 add(l1);
                 
 		
+                //table starts
 		table = new JTable();
 		table.setBounds(0, 40, 500, 400);
 		contentPane.add(table);

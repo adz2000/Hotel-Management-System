@@ -84,6 +84,11 @@ public class Login_Page extends javax.swing.JFrame {
         userName.setForeground(new java.awt.Color(255, 255, 255));
         userName.setToolTipText("Username");
         userName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        userName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userNameActionPerformed(evt);
+            }
+        });
 
         password.setBackground(new java.awt.Color(186, 79, 84));
         password.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,13 +224,11 @@ public class Login_Page extends javax.swing.JFrame {
        ResultSet rs = c1.s.executeQuery(q); 
             if(rs.next()){ 
                 new mainMenu().setVisible(true);
+                setVisible(false);
                 
             }else{
-                JOptionPane.showMessageDialog(null, "Invalid login");
-                
+                JOptionPane.showMessageDialog(null, "Invalid login!");
             }
-            
-            setVisible(false);
        
         }catch(Exception exception){
             exception.printStackTrace();
@@ -239,6 +242,10 @@ public class Login_Page extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameActionPerformed
 
     /**
      * @param args the command line arguments

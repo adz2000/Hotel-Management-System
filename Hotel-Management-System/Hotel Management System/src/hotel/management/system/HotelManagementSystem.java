@@ -68,9 +68,7 @@ public class HotelManagementSystem extends JFrame implements ActionListener{
                 
         }
         
-        public static void main(String[] args) {
-//                HotelManagementSystem window = new HotelManagementSystem();  
-                new MainClass().setVisible(true);
-//                window.setVisible(true);			
+        public static void main(String[] args) {  
+                new MainClass().setVisible(true);		
 	}
 }
