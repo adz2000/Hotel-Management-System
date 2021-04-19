@@ -5,8 +5,13 @@
  */
 package hotel.management.system;
 
+//import hotel.management.system.icons.multiInputFrame;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.ResultSet;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -36,15 +41,15 @@ public class newAddEmployee extends javax.swing.JFrame {
                     
                     if(jtf.getText().equals("Full Name"))
                         jtf.setText("");
-                    else if(jtf.getText().equals("Aadhar ID"))
+                    else if(jtf.getText().equals("Aadhar ID (12 digits)"))
                         jtf.setText("");
-                    else if(jtf.getText().equals("Age"))
+                    else if(jtf.getText().equals("Age (14-70)"))
                         jtf.setText("");
-                    else if(jtf.getText().equals("Contact Number"))
+                    else if(jtf.getText().equals("Contact Number (10 digits)"))
                         jtf.setText("");
                     else if(jtf.getText().equals("Designation"))
                         jtf.setText("");
-                    else if(jtf.getText().equals("Salary"))
+                    else if(jtf.getText().equals("Salary (>=10000)"))
                         jtf.setText("");
                 }
 
@@ -54,15 +59,15 @@ public class newAddEmployee extends javax.swing.JFrame {
                     if(jtf.equals(empName) && jtf.getText().equals(""))
                         jtf.setText("Full Name");
                     else if(jtf.equals(empAadhar) && jtf.getText().equals(""))
-                        jtf.setText("Aadhar ID");
+                        jtf.setText("Aadhar ID (12 digits)");
                     else if(jtf.equals(Age) && jtf.getText().equals(""))
-                        jtf.setText("Age");
+                        jtf.setText("Age (14-70)");
                     else if(jtf.equals(contactNo) && jtf.getText().equals(""))
-                        jtf.setText("Contact Number");
+                        jtf.setText("Contact Number (10 digits)");
                     else if(jtf.equals(designation) && jtf.getText().equals(""))
                         jtf.setText("Designation");
                     else if(jtf.equals(salary) && jtf.getText().equals(""))
-                        jtf.setText("Salary");
+                        jtf.setText("Salary (>=10000)");
                 }
                 
             });
@@ -183,7 +188,7 @@ public class newAddEmployee extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, null));
 
         Age.setBackground(new java.awt.Color(255, 255, 255));
-        Age.setText("Age");
+        Age.setText("Age (14-70)");
         Age.setPreferredSize(new java.awt.Dimension(150, 30));
         Age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,7 +199,7 @@ public class newAddEmployee extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         empAadhar.setBackground(new java.awt.Color(255, 255, 255));
-        empAadhar.setText("Aadhar ID");
+        empAadhar.setText("Aadhar ID (12 digits)");
         empAadhar.setPreferredSize(new java.awt.Dimension(150, 30));
         empAadhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +213,7 @@ public class newAddEmployee extends javax.swing.JFrame {
         jLabel3.setText("Enter the details...");
 
         contactNo.setBackground(new java.awt.Color(255, 255, 255));
-        contactNo.setText("Contact Number");
+        contactNo.setText("Contact Number (10 digits)");
         contactNo.setPreferredSize(new java.awt.Dimension(150, 30));
         contactNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,8 +272,13 @@ public class newAddEmployee extends javax.swing.JFrame {
         designation.setPreferredSize(new java.awt.Dimension(81, 30));
 
         salary.setBackground(new java.awt.Color(255, 255, 255));
-        salary.setText("Salary");
+        salary.setText("Salary (>=10000)");
         salary.setPreferredSize(new java.awt.Dimension(48, 30));
+        salary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryActionPerformed(evt);
+            }
+        });
 
         addEmployeeBtn.setBackground(new java.awt.Color(169, 7, 128));
         addEmployeeBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -449,17 +459,30 @@ public class newAddEmployee extends javax.swing.JFrame {
                        
                     String dept = (String)department.getSelectedItem();
                     
-                    try {
+                    try 
+                    {
                         conn c = new conn();
                         String str = "INSERT INTO employee (`Emp_Aadhar_ID`, `Emp_Name`, `Emp_Age`, `Emp_Gender`, `Emp_Contact_No`, `Dept_Name`, `Designation`, `Salary`) VALUES ('"+aadhar+"', '"+name+"', '"+age+"', '"+gender+"', '"+phone+"', '"+dept+"', '"+desig+"', '"+sal+"')";
                      
                         c.s.executeUpdate(str);
                         JOptionPane.showMessageDialog(null,"Employee Added");
-                        setVisible(false);
+
+                        if(desig.equals("Receptionist") || desig.equals("receptionist") || desig.equals("recep") || desig.equals("Recep"))
+                        {
+                            new Credential().setVisible(true);
+                        }
+                        else if(desig.equals("Administrator") || desig.equals("administrator") || desig.equals("admin") || desig.equals("Admin"))
+                        {
+                            new CredentialAdmin().setVisible(true);
+                        }
+                        else if(desig.equals("Driver") || desig.equals("driver") || desig.equals("DRIVER")){
+                            
+                            new newAddDriver2().setVisible(true);
+                        }
                     
                     } catch (Exception e) {
                         
-                        JOptionPane.showMessageDialog(null,"Error! Please try again.");
+                        JOptionPane.showMessageDialog(null,"Error! Please try again (Ensure that contraints are correct)");
                         e.printStackTrace();
         	    }
     }//GEN-LAST:event_addEmployeeBtnActionPerformed
@@ -473,6 +496,10 @@ public class newAddEmployee extends javax.swing.JFrame {
     private void FemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FemaleActionPerformed
+
+    private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salaryActionPerformed
     
     /**
      * @param args the command line arguments

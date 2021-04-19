@@ -27,48 +27,48 @@ public class newAddDriver2 extends javax.swing.JFrame {
     public newAddDriver2() {
         initComponents();
         
-        JTextField [] tfs= {eID,licenseNo,carPlateNo};
-        HintText(tfs);
+       JTextField [] tfs= {licenseNo,carPlateNo};
+       HintText(tfs);
         
-        eID.addFocusListener(new FocusListener() 
-        {
-                 @Override
-                 public void focusGained(FocusEvent e) {
-                 }
-
-                 @Override
-                 public void focusLost(FocusEvent e) 
-                 {
-                    conn c = new conn();
-                    String s1=eID.getText();
-                    try{
-                            //check query
-                            String qcheck = "SELECT employee.Emp_Name,employee.Emp_Gender,employee.Emp_Contact_No,employee.Emp_ID FROM employee WHERE (employee.Emp_ID='"+s1+"' AND employee.Designation='Driver') AND (employee.Emp_Name,employee.Emp_Gender,employee.Emp_Contact_No,employee.Emp_ID) NOT IN (SELECT A.Emp_Name,A.Emp_Gender,A.Emp_Contact_No,A.Emp_ID FROM employee A INNER JOIN driver AS T ON A.Emp_ID=T.Emp_ID)";
-                            ResultSet rs1 = c.s.executeQuery(qcheck);
-                            if (rs1.absolute(1))
-                            {
-                                JOptionPane.showMessageDialog(null, "Employee found, Please fill the remaining details ");
-                                driverName.setText(rs1.getString("Emp_Name"));
-                                driverGender.setText(rs1.getString("Emp_Gender"));
-                                driverPhone.setText(rs1.getString("Emp_Contact_No"));
-                                
-                            }
-                            else
-                            {
-                                JOptionPane.showMessageDialog(null, "Error! Please Try Again");
-                            }
-                                
-                        }
-                    catch(SQLException e1)
-                        {
-	    			System.out.println(e1.getMessage());
-	    		}
-		    catch(NumberFormatException s)
-                        {
-		    		JOptionPane.showMessageDialog(null, "Please enter a valid Number");
-			}
-                 }
-    });
+//        eID.addFocusListener(new FocusListener() 
+//        {
+//                 @Override
+//                 public void focusGained(FocusEvent e) {
+//                 }
+//
+//                 @Override
+//                 public void focusLost(FocusEvent e) 
+//                 {
+//                    conn c = new conn();
+//                    String s1=eID.getText();
+//                    try{
+//                            //check query
+//                            String qcheck = "SELECT employee.Emp_Name,employee.Emp_Gender,employee.Emp_Contact_No,employee.Emp_ID FROM employee WHERE (employee.Emp_ID='"+s1+"' AND employee.Designation='Driver') AND (employee.Emp_Name,employee.Emp_Gender,employee.Emp_Contact_No,employee.Emp_ID) NOT IN (SELECT A.Emp_Name,A.Emp_Gender,A.Emp_Contact_No,A.Emp_ID FROM employee A INNER JOIN driver AS T ON A.Emp_ID=T.Emp_ID)";
+//                            ResultSet rs1 = c.s.executeQuery(qcheck);
+//                            if (rs1.absolute(1))
+//                            {
+//                                JOptionPane.showMessageDialog(null, "Employee found, Please fill the remaining details ");
+//                                driverName.setText(rs1.getString("Emp_Name"));
+//                                driverGender.setText(rs1.getString("Emp_Gender"));
+//                                driverPhone.setText(rs1.getString("Emp_Contact_No"));
+//                                
+//                            }
+//                            else
+//                            {
+//                                JOptionPane.showMessageDialog(null, "Error! Please Try Again");
+//                            }
+//                                
+//                        }
+//                    catch(SQLException e1)
+//                        {
+//	    			System.out.println(e1.getMessage());
+//	    		}
+//		    catch(NumberFormatException s)
+//                        {
+//		    		JOptionPane.showMessageDialog(null, "Please enter a valid Number");
+//			}
+//                 }
+//    });
         
     }
     
@@ -80,10 +80,8 @@ public class newAddDriver2 extends javax.swing.JFrame {
                 @Override
                 public void focusGained(FocusEvent e) {
                     
-                    
-                    if(jtf.getText().equals("Driver's Employee ID"))
-                        jtf.setText("");
-                    else if(jtf.getText().equals("License Number"))
+                                        
+                    if(jtf.getText().equals("License Number"))
                         jtf.setText("");
                     else if(jtf.getText().equals("Car Plate Number"))
                         jtf.setText("");
@@ -92,9 +90,7 @@ public class newAddDriver2 extends javax.swing.JFrame {
                 @Override
                 public void focusLost(FocusEvent e) {
                
-                    if(jtf.equals(eID) && jtf.getText().equals(""))
-                        jtf.setText("Driver's Employee ID");
-                    else if(jtf.equals(licenseNo) && jtf.getText().equals(""))
+                    if(jtf.equals(licenseNo) && jtf.getText().equals(""))
                         jtf.setText("License Number");
                     else if(jtf.equals(carPlateNo) && jtf.getText().equals(""))
                         jtf.setText("Car Plate Number");
@@ -116,20 +112,14 @@ public class newAddDriver2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        driverGender = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         carPlateNo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         licenseNo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         selectCar = new javax.swing.JComboBox<>();
-        eID = new javax.swing.JTextField();
         addDriverBtn = new javax.swing.JButton();
-        driverName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        driverPhone = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,52 +137,25 @@ public class newAddDriver2 extends javax.swing.JFrame {
         jLabel2.setText("Car Allocation");
         jLabel2.setToolTipText("");
 
-        jButton3.setBackground(new java.awt.Color(153, 0, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/system/icons/back.png"))); // NOI18N
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addGap(381, 381, 381)
+                .addContainerGap(244, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(47, 47, 47))
+                .addGap(300, 300, 300))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 255), null, null));
-
-        driverGender.setEditable(false);
-        driverGender.setBackground(new java.awt.Color(255, 255, 255));
-        driverGender.setText("Gender");
-        driverGender.setPreferredSize(new java.awt.Dimension(150, 30));
-        driverGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                driverGenderActionPerformed(evt);
-            }
-        });
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
@@ -206,9 +169,9 @@ public class newAddDriver2 extends javax.swing.JFrame {
         });
 
         jLabel3.setBackground(new java.awt.Color(51, 153, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(17, 71, 125));
-        jLabel3.setText("Enter the Driver's employee ID (Autofill)");
+        jLabel3.setText("Please fill up the following details...");
 
         licenseNo.setBackground(new java.awt.Color(255, 255, 255));
         licenseNo.setText("License Number");
@@ -226,17 +189,12 @@ public class newAddDriver2 extends javax.swing.JFrame {
 
         selectCar.setBackground(new java.awt.Color(255, 255, 255));
         selectCar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUV ", "Sedan ", "Hatchback" }));
-        selectCar.setPreferredSize(new java.awt.Dimension(116, 30));
+        selectCar.setPreferredSize(new java.awt.Dimension(116, 25));
         selectCar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectCarActionPerformed(evt);
             }
         });
-
-        eID.setBackground(new java.awt.Color(255, 255, 255));
-        eID.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        eID.setText("Driver's Employee ID");
-        eID.setPreferredSize(new java.awt.Dimension(81, 30));
 
         addDriverBtn.setBackground(new java.awt.Color(0, 102, 204));
         addDriverBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -249,28 +207,6 @@ public class newAddDriver2 extends javax.swing.JFrame {
             }
         });
 
-        driverName.setEditable(false);
-        driverName.setBackground(new java.awt.Color(255, 255, 255));
-        driverName.setText("Name");
-        driverName.setPreferredSize(new java.awt.Dimension(81, 30));
-
-        jLabel5.setBackground(new java.awt.Color(51, 153, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(17, 71, 125));
-        jLabel5.setText("Car & License Details");
-
-        driverPhone.setEditable(false);
-        driverPhone.setBackground(new java.awt.Color(255, 255, 255));
-        driverPhone.setFont(new java.awt.Font("Segoe UI Semilight", 0, 12)); // NOI18N
-        driverPhone.setText("Contact Number");
-        driverPhone.setMinimumSize(new java.awt.Dimension(14, 35));
-        driverPhone.setPreferredSize(new java.awt.Dimension(150, 30));
-        driverPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                driverPhoneActionPerformed(evt);
-            }
-        });
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/system/icons/driversmall2.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -280,68 +216,49 @@ public class newAddDriver2 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(carPlateNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(licenseNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addDriverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(driverGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(driverPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
-                                .addComponent(driverName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(eID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(licenseNo, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(carPlateNo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(addDriverBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56))))))
+                        .addGap(202, 202, 202)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(317, 317, 317))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(eID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(driverName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driverPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(driverGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 15, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
                         .addComponent(licenseNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(carPlateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(addDriverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(carPlateNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(addDriverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -349,10 +266,12 @@ public class newAddDriver2 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,14 +279,14 @@ public class newAddDriver2 extends javax.swing.JFrame {
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 942, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,17 +294,13 @@ public class newAddDriver2 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void driverGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_driverGenderActionPerformed
 
     private void carPlateNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carPlateNoActionPerformed
         // TODO add your handling code here:
@@ -401,7 +316,7 @@ public class newAddDriver2 extends javax.swing.JFrame {
 
     private void addDriverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDriverBtnActionPerformed
         // TODO add your handling code here:
-        String id = eID.getText();
+        
         String licNo = licenseNo.getText();
         String carPlate = carPlateNo.getText();
         Timestamp timeRN;
@@ -412,7 +327,12 @@ public class newAddDriver2 extends javax.swing.JFrame {
         
         try {
             conn c = new conn();
-            String str = "INSERT INTO driver (`License_No`, `Car_Type`,`Car_Plate_No`, `Avail_Status`, `Emp_ID`) VALUES ('"+licNo+"', '"+carType+"', '"+carPlate+"', '"+availStatus+"','"+id+"')";
+            String trial1="select max(Emp_ID) from employee";
+            ResultSet rs = c.s.executeQuery(trial1);
+            rs.next();
+
+            int employeeID= rs.getInt("max(Emp_ID)");
+            String str = "INSERT INTO driver (`License_No`, `Car_Type`,`Car_Plate_No`, `Avail_Status`, `Emp_ID`) VALUES ('"+licNo+"', '"+carType+"', '"+carPlate+"', '"+availStatus+"','"+employeeID+"')";
 
             c.s.executeUpdate(str);
             JOptionPane.showMessageDialog(null,"Car Allocated to Driver");
@@ -424,16 +344,6 @@ public class newAddDriver2 extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_addDriverBtnActionPerformed
-
-    private void driverPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverPhoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_driverPhoneActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        new newAdmin().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,16 +383,10 @@ public class newAddDriver2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDriverBtn;
     private javax.swing.JTextField carPlateNo;
-    private javax.swing.JTextField driverGender;
-    private javax.swing.JTextField driverName;
-    private javax.swing.JTextField driverPhone;
-    private javax.swing.JTextField eID;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -8,6 +8,7 @@ package hotel.management.system;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 
 public class HotelManagementSystem extends JFrame implements ActionListener{
@@ -69,6 +70,11 @@ public class HotelManagementSystem extends JFrame implements ActionListener{
         }
         
         public static void main(String[] args) {  
-                new MainClass().setVisible(true);		
+                new New_Customer().setVisible(true);
+//                try{
+//                    new manageFoodItems().setVisible(true);
+//               }catch(Exception ex){
+//                   ex.printStackTrace();
+//               }
 	}
 }
