@@ -5,6 +5,19 @@
  */
 package hotel.management.system;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.util.ArrayList;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -53,6 +66,7 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         checkOutButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         t1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jButton3.setBackground(new java.awt.Color(153, 0, 204));
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
@@ -82,7 +96,7 @@ public class CustomerCheckOut extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Toledo Heavy", 3, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CHECK OUT");
 
@@ -91,8 +105,8 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(182, 182, 182)
                 .addComponent(jButton4)
                 .addGap(31, 31, 31))
@@ -170,40 +184,51 @@ public class CustomerCheckOut extends javax.swing.JFrame {
         t1.setForeground(new java.awt.Color(255, 255, 255));
         t1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Print Receipt");
+        jButton2.setActionCommand("Print Receipt");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roomNumber)
+                    .addComponent(adhaar)
+                    .addComponent(amount)
+                    .addComponent(feedback))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roomNumber)
-                            .addComponent(adhaar)
-                            .addComponent(amount)
-                            .addComponent(feedback))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(143, 143, 143)
-                                .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(roomNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(72, 72, 72)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143)
+                        .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
+                        .addComponent(roomNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(81, 81, 81)
-                    .addComponent(checkOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(635, Short.MAX_VALUE)))
+                    .addComponent(checkOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(616, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,12 +257,14 @@ public class CustomerCheckOut extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)))
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(359, Short.MAX_VALUE)
-                    .addComponent(checkOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkOutButton)
                     .addGap(21, 21, 21)))
         );
 
@@ -281,25 +308,27 @@ public class CustomerCheckOut extends javax.swing.JFrame {
 
     private void checkOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutButtonActionPerformed
         // TODO add your handling code here:
-                                String id = adhaar.getText();
-                                String s1 = roomNumber.getText();
+                                String id = jTextField2.getText();
+                                String s1 = roomNumberText.getText();
                                 String s2 = feedback.getText();
 //                                String s3 = t1.getText();
-                                String s3 = ";";
-				String q1 = "update occupies set Check_Out = now(), Feedback = '"+s2+"' where Check_In = '"+s3+"'and Cust_Aadhar_ID = '"+id+"' and Room_No = "+s1;
-                                String q2 = "update room set Avail_Status = 'A' where Room_No = "+s1;
                                 
-                                
-				conn c = new conn();
 
 	    		try{
-	    			
-	    			
-	    			c.s.executeUpdate(q1);
+	    			conn c = new conn();
+                                String number = roomNumberText.getText();
+                                String aadhar = jTextField2.getText();
+                                
+	    			ResultSet rs = c.s.executeQuery("select * from occupies where Room_No ="+number+" and Cust_Aadhar_ID = '"+aadhar+"' order by Check_In DESC");
+                                rs.next();
+	    			String s3 = rs.getString("Check_In");
+                                String q1 = "update occupies set Check_Out = now(), Feedback = '"+s2+"' where Check_In = '"+s3+"'and Cust_Aadhar_ID = '"+id+"' and Room_No = "+s1;
+                                String q2 = "update room set Avail_Status = 'A' where Room_No = "+s1;
+                                c.s.executeUpdate(q1);
 	    			c.s.executeUpdate(q2);
 	    			JOptionPane.showMessageDialog(null, "Check Out Successful");
-	    			new Reception().setVisible(true);
-                                setVisible(false);
+	    			//new Reception().setVisible(true);
+                                //setVisible(false);
 	    		}catch(SQLException e1){
 	    			System.out.println(e1.getMessage());
 	    		}
@@ -314,11 +343,12 @@ public class CustomerCheckOut extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         try{
-                            
+                            System.out.println("hi");
                             conn c = new conn();
-                            String number = roomNumber.getText();
-                            String aadhar = adhaar.getText();
+                           String number = roomNumberText.getText();
+                           String aadhar = jTextField2.getText();
                             ResultSet rs = c.s.executeQuery("select * from occupies where Room_No ="+number+" and Cust_Aadhar_ID = '"+aadhar+"' order by Check_In DESC");
+                            System.out.println("hi");
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             LocalDate cdate = timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                             if(rs.next()){
@@ -342,13 +372,138 @@ public class CustomerCheckOut extends javax.swing.JFrame {
                                 
                             }
                             else{
-                                 JOptionPane.showMessageDialog(null, "Room no or Aadhar number is incorrect");
+                                JOptionPane.showMessageDialog(null, "Room no or Aadhar number is incorrect");
                                 roomNumberText.setText(null);
-                                adhaar.setText(null);
+                                jTextField2.setText(null);
                             }
                         }catch(Exception e){ }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PrinterJob pj = PrinterJob.getPrinterJob();        
+        pj.setPrintable(new BillPrintable(),getPageFormat(pj));
+        try {
+             pj.print();
+             //JOptionPane.showMessageDialog(null, "Room no or Aadhar number is incorrect");
+          
+        }
+         catch (PrinterException ex) {
+                 ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+      public PageFormat getPageFormat(PrinterJob pj)
+{
+    
+    PageFormat pf = pj.defaultPage();
+    Paper paper = pf.getPaper();    
+
+    double bodyHeight = cm_to_pp(12);  
+    double headerHeight = 5.0;                  
+    double footerHeight = 5.0;        
+    double width = cm_to_pp(8); 
+    double height = cm_to_pp(headerHeight+bodyHeight+footerHeight); 
+    paper.setSize(width, height);
+    paper.setImageableArea(0,10,width,height - cm_to_pp(1));  
+            
+    pf.setOrientation(PageFormat.PORTRAIT);  
+    pf.setPaper(paper);    
+
+    return pf;
+}
+   
+    
+    
+    protected static double cm_to_pp(double cm)
+    {            
+	        return toPPI(cm * 0.393600787);            
+    }
+ 
+protected static double toPPI(double inch)
+    {            
+	        return inch * 72d;            
+    }
+    
+
+
+public class BillPrintable implements Printable {
+    
+   
+    
+    
+  public int print(Graphics graphics, PageFormat pageFormat,int pageIndex) 
+  throws PrinterException 
+  {    
+      
+     // int r= itemName.size();
+  //    ImageIcon icon=new ImageIcon("C:UsersccsDocumentsNetBeansProjectsvideo TestPOSInvoicesrcposinvoicemylogo.jpg"); 
+      int result = NO_SUCH_PAGE;    
+        if (pageIndex == 0) {                    
+        
+            Graphics2D g2d = (Graphics2D) graphics;                    
+            double width = pageFormat.getImageableWidth();                               
+            g2d.translate((int) pageFormat.getImageableX(),(int) pageFormat.getImageableY()); 
+
+
+
+          //  FontMetrics metrics=g2d.getFontMetrics(new Font("Arial",Font.BOLD,7));
+        
+        try{
+            int y=20;
+            int yShift = 10;
+            int headerRectHeight=15;
+           // int headerRectHeighta=40;
+           Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+           String chout = timestamp.toString();
+           
+           try{
+               conn c = new conn();
+               String number = roomNumberText.getText();
+               String aadhar = jTextField2.getText();
+               ResultSet rs = c.s.executeQuery("select * from occupies where Room_No ="+number+" and Cust_Aadhar_ID = '"+aadhar+"' order by Check_In DESC");
+               rs.next();
+           
+               String chin = rs.getString("Check_In");
+               System.out.println(chin);
+           
+                
+            g2d.setFont(new Font("Monospaced",Font.PLAIN,9));
+           // g2d.drawImage(icon.getImage(), 50, 20, 90, 30, rootPane);y+=yShift+30;
+            g2d.drawString("-------------------------------------",12,y);y+=yShift;
+            g2d.drawString("                          ",12,y);y+=yShift;
+            g2d.drawString("   BITS PILANI HYDERABAD HOTELS ",12,y);y+=yShift;
+            g2d.drawString("        Hyderabad, India          ",12,y);y+=yShift;
+            g2d.drawString("           pin : 660088           ",12,y);y+=yShift;
+            g2d.drawString("       tele  : +94700000000      ",12,y);y+=yShift;
+            g2d.drawString("-------------------------------------",12,y);y+=headerRectHeight;
+
+            g2d.drawString(" Total amount:               "+jTextField2.getText()+"   ",10,y);y+=yShift;
+            g2d.drawString(" Checked in:                 "+chin+"   ",10,y);y+=yShift;
+            g2d.drawString(" Checked out:                 "+chout+"   ",10,y);y+=yShift;
+          
+            g2d.drawString("-------------------------------------",10,y);y+=yShift;
+            g2d.drawString(" Total amount:               "+amountText.getText()+"   ",10,y);y+=yShift;
+            g2d.drawString("-------------------------------------",10,y);y+=yShift;
+          
+  
+            g2d.drawString("*************************************",10,y);y+=yShift;
+            g2d.drawString("       THANK YOU COME AGAIN            ",10,y);y+=yShift;
+            g2d.drawString("*************************************",10,y);y+=yShift;
+            g2d.drawString("     SOFTWARE BY:DBMS STUDENTS         ",10,y);y+=yShift;
+            g2d.drawString("   CONTACT: studentsofbits@gmail.com     ",10,y);y+=yShift;       
+           
+          }catch(Exception e) {System.out.println("didnt querry");}
+    }
+    catch(Exception e){
+    e.printStackTrace();
+    }
+
+              result = PAGE_EXISTS;    
+          }    
+          return result;    
+      }
+   }
+    
     /**
      * @param args the command line arguments
      */
@@ -391,6 +546,7 @@ public class CustomerCheckOut extends javax.swing.JFrame {
     private javax.swing.JButton checkOutButton;
     private javax.swing.JLabel feedback;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -405,3 +561,4 @@ public class CustomerCheckOut extends javax.swing.JFrame {
     private javax.swing.JTextField t1;
     // End of variables declaration//GEN-END:variables
 }
+

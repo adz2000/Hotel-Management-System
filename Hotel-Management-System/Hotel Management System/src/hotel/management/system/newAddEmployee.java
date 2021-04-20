@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.sql.SQLException;
 
 /**
  *
@@ -480,9 +481,9 @@ public class newAddEmployee extends javax.swing.JFrame {
                             new newAddDriver2().setVisible(true);
                         }
                     
-                    } catch (Exception e) {
+                    } catch (SQLException e) {
                         
-                        JOptionPane.showMessageDialog(null,"Error! Please try again (Ensure that contraints are correct)");
+                        JOptionPane.showMessageDialog(null, e.getMessage() );
                         e.printStackTrace();
         	    }
     }//GEN-LAST:event_addEmployeeBtnActionPerformed

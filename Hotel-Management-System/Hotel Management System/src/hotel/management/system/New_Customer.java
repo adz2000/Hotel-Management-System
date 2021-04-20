@@ -78,7 +78,9 @@ public class New_Customer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Toledo Light", 3, 48)); // NOI18N
+        kGradientPanel1.setkEndColor(new java.awt.Color(0, 51, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("New Customer");
 
@@ -363,6 +365,7 @@ public class New_Customer extends javax.swing.JFrame {
                                 new Reception().setVisible(true);
                                 setVisible(false);
 	    		}catch(SQLException e1){
+                                JOptionPane.showMessageDialog(null, e1.getMessage());
 	    			System.out.println(e1.getMessage());
 	    		}
 		    		catch(NumberFormatException s){

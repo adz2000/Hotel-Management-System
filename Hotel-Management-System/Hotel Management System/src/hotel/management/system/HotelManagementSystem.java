@@ -70,7 +70,7 @@ public class HotelManagementSystem extends JFrame implements ActionListener{
         }
         
         public static void main(String[] args) {  
-                new New_Customer().setVisible(true);
+                new MainClass().setVisible(true);
 //                try{
 //                    new manageFoodItems().setVisible(true);
 //               }catch(Exception ex){
