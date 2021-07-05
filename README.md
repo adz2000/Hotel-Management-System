@@ -10,8 +10,8 @@ Credits goes to:
 
 2 Ansh Anand (https://github.com/Ansh45887)
 
-3 Soumya Pochiraju (https://github.com/forest113)
+3 Garvit Kashyap (https://github.com/GarvitK01) 
 
-4 Garvit Kashyap (https://github.com/GarvitK01) 
+4 Soumya Pochiraju (https://github.com/forest113)
 
 for collaborating on this project.
